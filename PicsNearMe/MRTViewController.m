@@ -60,14 +60,11 @@
             [self dismissCamera];
         }
         else{
-//            [HUD hide:YES];
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+            [SVProgressHUD dismiss];
+            DLog(@"Error: %@ %@", error, [error userInfo]);
         }
     } progressBlock:^(int percentDone) {
-        [SVProgressHUD showProgress:percentDone];
-        // Update your progress spinner here. percentDone will be between 0 and 100.
-//        HUD.progress = (float)percentDone/100;
+        [SVProgressHUD showProgress:percentDone/100];
     }];
 }
 
