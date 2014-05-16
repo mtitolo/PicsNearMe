@@ -15,6 +15,8 @@
 #import "MRTAppDelegate.h"
 #import "MRTSessionController.h"
 #import "MRTImageCollectionViewCell.h"
+#import <JTSImageViewController/JTSImageViewController.h>
+#import <SDWebImage/SDImageCache.h>
 
 @interface MRTViewController () <DBCameraViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -161,6 +163,28 @@
     [cell setImageWithURLString:self.images[indexPath.row]];
     
     return cell;
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:self.images[indexPath.row]];
+    UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    imageInfo.referenceRect = attributes.frame;
+    imageInfo.referenceView = collectionView;
+    
+    // Setup view controller
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+    
+    // Present the view controller.
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
+    
 }
 
 @end
