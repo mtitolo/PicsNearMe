@@ -199,11 +199,14 @@ static NSString * const kMCSessionServiceType = @"mcsessionp2p";
 }
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
-{
-    // Decode the incoming data to a UTF8 encoded string
-    NSString *receivedMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+{    NSDictionary *userInfo = @{ @"data": data,
+                                 @"peerID": peerID };
     
-    NSLog(@"didReceiveData %@ from %@", receivedMessage, peerID.displayName);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DidReceiveDataNotification"
+                                                            object:nil
+                                                          userInfo:userInfo];
+    });
 }
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
