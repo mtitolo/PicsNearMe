@@ -1,0 +1,24 @@
+PODS:
+  - DBCamera (2.0)
+  - Facebook-iOS-SDK (3.13.1)
+  - Parse-iOS-SDK (1.2.19):
+    - Facebook-iOS-SDK (~> 3.7)
+  - SVProgressHUD (1.0)
+
+DEPENDENCIES:
+  - DBCamera (from `https://github.com/danielebogo/DBCamera.git`, tag `2.0`)
+  - Parse-iOS-SDK
+  - SVProgressHUD
+
+EXTERNAL SOURCES:
+  DBCamera:
+    :git: https://github.com/danielebogo/DBCamera.git
+    :tag: 2.0
+
+SPEC CHECKSUMS:
+  DBCamera: 92d3ca3646d27a6784af95dfbc72539e1ea296fc
+  Facebook-iOS-SDK: 47ae9e54684c84f93d75d4e6ab47cd031abdf406
+  Parse-iOS-SDK: 48e366fb9a8956c4e50d93cfd16243176938fae1
+  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
+
+COCOAPODS: 0.32.1
