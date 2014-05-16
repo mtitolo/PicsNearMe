@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9BA8B4785EFB4412B6ADD60C /* libPods-PicsNearMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5E6EFD4D8A4D4EA21CD85E /* libPods-PicsNearMe.a */; };
+		D182283619262DC80037B30F /* MRTImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D182283519262DC80037B30F /* MRTImageCollectionViewCell.m */; };
 		D1F1D66119261258009551C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1D66019261258009551C9 /* Foundation.framework */; };
 		D1F1D66319261258009551C9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1D66219261258009551C9 /* CoreGraphics.framework */; };
 		D1F1D66519261258009551C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1D66419261258009551C9 /* UIKit.framework */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		6D5E6EFD4D8A4D4EA21CD85E /* libPods-PicsNearMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PicsNearMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8AE05FB2F84A0286D021C2 /* Pods-PicsNearMe.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicsNearMe.xcconfig"; path = "Pods/Pods-PicsNearMe.xcconfig"; sourceTree = "<group>"; };
+		D182283419262DC80037B30F /* MRTImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTImageCollectionViewCell.h; sourceTree = "<group>"; };
+		D182283519262DC80037B30F /* MRTImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTImageCollectionViewCell.m; sourceTree = "<group>"; };
 		D1F1D65D19261258009551C9 /* PicsNearMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicsNearMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F1D66019261258009551C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D1F1D66219261258009551C9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,8 @@
 				D1F1D67619261258009551C9 /* MRTViewController.m */,
 				D1F1D69519261D08009551C9 /* MRTMPCHandler.h */,
 				D1F1D69619261D08009551C9 /* MRTMPCHandler.m */,
+				D182283419262DC80037B30F /* MRTImageCollectionViewCell.h */,
+				D182283519262DC80037B30F /* MRTImageCollectionViewCell.m */,
 				D1F1D67819261258009551C9 /* Images.xcassets */,
 				D1F1D66719261258009551C9 /* Supporting Files */,
 			);
@@ -296,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D182283619262DC80037B30F /* MRTImageCollectionViewCell.m in Sources */,
 				D1F1D67119261258009551C9 /* MRTAppDelegate.m in Sources */,
 				D1F1D67719261258009551C9 /* MRTViewController.m in Sources */,
 				D1F1D66D19261258009551C9 /* main.m in Sources */,

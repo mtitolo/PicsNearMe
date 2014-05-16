@@ -16,6 +16,7 @@
 {
     
     self.mpcHandler = [[MRTMPCHandler alloc] init];
+    
     [Parse setApplicationId:@"5wRVW4rP5hWFviSI5hSYviAQ8lxNppZ1H8DiAz3S"
                   clientKey:@"L32rNESxftQ06YTbjoK9mWGvRWT85rV1mvSLDiir"];
     return YES;

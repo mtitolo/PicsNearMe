@@ -6,6 +6,8 @@ target "PicsNearMe" do
 pod 'DBCamera', :git => 'https://github.com/danielebogo/DBCamera.git', :tag => '2.0'
 pod 'Parse-iOS-SDK'
 pod 'SVProgressHUD'
+pod 'SDWebImage'
+pod 'JTSImageViewController'
 
 end
 

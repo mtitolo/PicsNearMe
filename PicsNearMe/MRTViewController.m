@@ -14,8 +14,12 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MRTAppDelegate.h"
 #import "MRTMPCHandler.h"
+#import "MRTImageCollectionViewCell.h"
 
-@interface MRTViewController () <DBCameraViewControllerDelegate>
+@interface MRTViewController () <DBCameraViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+
+@property (nonatomic, strong) NSMutableArray* images;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -27,6 +31,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataReceived:) name:@"DidReceiveDataNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveImages) name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,6 +49,9 @@
     [appDelegate.mpcHandler setupSession];
     [appDelegate.mpcHandler setupBrowser];
     [appDelegate.mpcHandler advertiseSelf:YES];
+    
+    [self loadStoredImages];
+    [self.collectionView reloadData];
 }
 
 - (IBAction)takePhotoTapped:(id)sender
@@ -56,13 +64,41 @@
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];
 }
-- (IBAction)send:(id)sender
+- (void)sendImage:(NSString*)imageString
 {
     MRTAppDelegate* appDelegate = (MRTAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [appDelegate.mpcHandler sendMessageToPeers:[NSString stringWithFormat:@"Hello %@", [NSDate date]]];
+    [appDelegate.mpcHandler sendMessageToPeers:imageString];
     
 }
+
+- (void)loadStoredImages
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    self.images = [[NSArray arrayWithContentsOfFile:[documentsDirectory stringByAppendingPathComponent:@"images.plist"]] mutableCopy];
+    
+    if (!self.images) {
+        self.images = [NSMutableArray array];
+    }
+}
+
+- (void)saveImages
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    [self.images writeToFile:[documentsDirectory stringByAppendingPathComponent:@"images.plist"] atomically:YES];
+}
+
+- (void)addImage:(NSString*)image
+{
+    [self.images insertObject:image atIndex:0];
+    [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:0 inSection:0]]];
+
+}
+
 #pragma mark - DBCameraViewControllerDelegate
 
 - (void) dismissCamera
@@ -81,6 +117,8 @@
             [SVProgressHUD dismiss];
             DLog(@"Saved photo to URL: %@", imageFile.url);
             [self dismissCamera];
+            [self sendImage:imageFile.url];
+//            [self addImage:imageFile.url];
         }
         else{
             [SVProgressHUD dismiss];
@@ -100,6 +138,25 @@
     MCPeerID* peer = notification.userInfo[@"peerID"];
     
     DLog(@"Received message %@ from %@", message, peer.displayName);
+    
+    [self addImage:message];
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.images.count;
+}
+
+- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    MRTImageCollectionViewCell* cell = (MRTImageCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"ImageCell" forIndexPath:indexPath];
+    
+    [cell setImageWithURLString:self.images[indexPath.row]];
+    
+    return cell;
 }
 
 @end
