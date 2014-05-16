@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9BA8B4785EFB4412B6ADD60C /* libPods-PicsNearMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5E6EFD4D8A4D4EA21CD85E /* libPods-PicsNearMe.a */; };
 		D182283619262DC80037B30F /* MRTImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D182283519262DC80037B30F /* MRTImageCollectionViewCell.m */; };
+		D1822839192645450037B30F /* MRTSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1822838192645450037B30F /* MRTSessionController.m */; };
 		D1F1D66119261258009551C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1D66019261258009551C9 /* Foundation.framework */; };
 		D1F1D66319261258009551C9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1D66219261258009551C9 /* CoreGraphics.framework */; };
 		D1F1D66519261258009551C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1D66419261258009551C9 /* UIKit.framework */; };
@@ -23,7 +24,6 @@
 		D1F1D68219261258009551C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1D66419261258009551C9 /* UIKit.framework */; };
 		D1F1D68A19261258009551C9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D1F1D68819261258009551C9 /* InfoPlist.strings */; };
 		D1F1D68C19261258009551C9 /* PicsNearMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1D68B19261258009551C9 /* PicsNearMeTests.m */; };
-		D1F1D69719261D08009551C9 /* MRTMPCHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D1F1D69619261D08009551C9 /* MRTMPCHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +41,8 @@
 		AB8AE05FB2F84A0286D021C2 /* Pods-PicsNearMe.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicsNearMe.xcconfig"; path = "Pods/Pods-PicsNearMe.xcconfig"; sourceTree = "<group>"; };
 		D182283419262DC80037B30F /* MRTImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTImageCollectionViewCell.h; sourceTree = "<group>"; };
 		D182283519262DC80037B30F /* MRTImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTImageCollectionViewCell.m; sourceTree = "<group>"; };
+		D1822837192645450037B30F /* MRTSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTSessionController.h; sourceTree = "<group>"; };
+		D1822838192645450037B30F /* MRTSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTSessionController.m; sourceTree = "<group>"; };
 		D1F1D65D19261258009551C9 /* PicsNearMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicsNearMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1F1D66019261258009551C9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D1F1D66219261258009551C9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,8 +62,6 @@
 		D1F1D68719261258009551C9 /* PicsNearMeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PicsNearMeTests-Info.plist"; sourceTree = "<group>"; };
 		D1F1D68919261258009551C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D1F1D68B19261258009551C9 /* PicsNearMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicsNearMeTests.m; sourceTree = "<group>"; };
-		D1F1D69519261D08009551C9 /* MRTMPCHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRTMPCHandler.h; sourceTree = "<group>"; };
-		D1F1D69619261D08009551C9 /* MRTMPCHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRTMPCHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,8 +129,8 @@
 				D1F1D67219261258009551C9 /* Main.storyboard */,
 				D1F1D67519261258009551C9 /* MRTViewController.h */,
 				D1F1D67619261258009551C9 /* MRTViewController.m */,
-				D1F1D69519261D08009551C9 /* MRTMPCHandler.h */,
-				D1F1D69619261D08009551C9 /* MRTMPCHandler.m */,
+				D1822837192645450037B30F /* MRTSessionController.h */,
+				D1822838192645450037B30F /* MRTSessionController.m */,
 				D182283419262DC80037B30F /* MRTImageCollectionViewCell.h */,
 				D182283519262DC80037B30F /* MRTImageCollectionViewCell.m */,
 				D1F1D67819261258009551C9 /* Images.xcassets */,
@@ -303,9 +303,9 @@
 			files = (
 				D182283619262DC80037B30F /* MRTImageCollectionViewCell.m in Sources */,
 				D1F1D67119261258009551C9 /* MRTAppDelegate.m in Sources */,
+				D1822839192645450037B30F /* MRTSessionController.m in Sources */,
 				D1F1D67719261258009551C9 /* MRTViewController.m in Sources */,
 				D1F1D66D19261258009551C9 /* main.m in Sources */,
-				D1F1D69719261D08009551C9 /* MRTMPCHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

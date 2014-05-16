@@ -13,7 +13,7 @@
 #import <Parse/Parse.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MRTAppDelegate.h"
-#import "MRTMPCHandler.h"
+#import "MRTSessionController.h"
 #import "MRTImageCollectionViewCell.h"
 
 @interface MRTViewController () <DBCameraViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
@@ -42,13 +42,13 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    MRTAppDelegate* appDelegate = (MRTAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    CFUUIDRef udid = CFUUIDCreate(NULL);
-    [appDelegate.mpcHandler setupPeerWithDisplayName:(NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, udid))];
-    [appDelegate.mpcHandler setupSession];
-    [appDelegate.mpcHandler setupBrowser];
-    [appDelegate.mpcHandler advertiseSelf:YES];
+//    MRTAppDelegate* appDelegate = (MRTAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    
+//    CFUUIDRef udid = CFUUIDCreate(NULL);
+//    [appDelegate.mpcHandler setupPeerWithDisplayName:(NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, udid))];
+//    [appDelegate.mpcHandler setupSession];
+//    [appDelegate.mpcHandler setupBrowser];
+//    [appDelegate.mpcHandler advertiseSelf:YES];
     
     [self loadStoredImages];
     [self.collectionView reloadData];
@@ -56,6 +56,10 @@
 
 - (IBAction)takePhotoTapped:(id)sender
 {
+//    
+//    [self sendImage:@"AAAHAHAHAHAHAH"];
+//    return;
+    
     DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
     DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
     [cameraController setUseCameraSegue:NO];

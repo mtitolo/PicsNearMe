@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class MRTMPCHandler;
+@class MRTSessionController;
 
 @interface MRTAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) MRTMPCHandler* mpcHandler;
+@property (strong, nonatomic) MRTSessionController* mpcHandler;
 
 @end

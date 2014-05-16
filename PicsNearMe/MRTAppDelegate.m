@@ -8,14 +8,14 @@
 
 #import "MRTAppDelegate.h"
 #import <Parse/Parse.h>
-#import "MRTMPCHandler.h"
+#import "MRTSessionController.h"
 
 @implementation MRTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    self.mpcHandler = [[MRTMPCHandler alloc] init];
+    self.mpcHandler = [[MRTSessionController alloc] init];
     
     [Parse setApplicationId:@"5wRVW4rP5hWFviSI5hSYviAQ8lxNppZ1H8DiAz3S"
                   clientKey:@"L32rNESxftQ06YTbjoK9mWGvRWT85rV1mvSLDiir"];
