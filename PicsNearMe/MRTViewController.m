@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) NSMutableArray* images;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *connectionsLabel;
 
 @end
 
@@ -34,6 +35,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataReceived:) name:@"DidReceiveDataNotification" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveImages) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cream_pixels"]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,13 +47,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    MRTAppDelegate* appDelegate = (MRTAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    
-//    CFUUIDRef udid = CFUUIDCreate(NULL);
-//    [appDelegate.mpcHandler setupPeerWithDisplayName:(NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, udid))];
-//    [appDelegate.mpcHandler setupSession];
-//    [appDelegate.mpcHandler setupBrowser];
-//    [appDelegate.mpcHandler advertiseSelf:YES];
     
     [self loadStoredImages];
     [self.collectionView reloadData];
@@ -176,13 +172,11 @@
     imageInfo.referenceRect = attributes.frame;
     imageInfo.referenceView = collectionView;
     
-    // Setup view controller
     JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
                                            initWithImageInfo:imageInfo
                                            mode:JTSImageViewControllerMode_Image
                                            backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
     
-    // Present the view controller.
     [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
     
 }
