@@ -39,8 +39,10 @@
 {
     MRTAppDelegate* appDelegate = (MRTAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    [appDelegate.mpcHandler setupPeerWithDisplayName:[UIDevice currentDevice].name];
+    CFUUIDRef udid = CFUUIDCreate(NULL);
+    [appDelegate.mpcHandler setupPeerWithDisplayName:(NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, udid))];
     [appDelegate.mpcHandler setupSession];
+    [appDelegate.mpcHandler setupBrowser];
     [appDelegate.mpcHandler advertiseSelf:YES];
 }
 
@@ -53,6 +55,13 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
     [nav setNavigationBarHidden:YES];
     [self presentViewController:nav animated:YES completion:nil];
+}
+- (IBAction)send:(id)sender
+{
+    MRTAppDelegate* appDelegate = (MRTAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [appDelegate.mpcHandler sendMessageToPeers:[NSString stringWithFormat:@"Hello %@", [NSDate date]]];
+    
 }
 #pragma mark - DBCameraViewControllerDelegate
 

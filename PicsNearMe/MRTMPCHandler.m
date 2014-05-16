@@ -8,6 +8,8 @@
 
 #import "MRTMPCHandler.h"
 
+static NSString * const kServiceType = @"mrt-picsnearme";
+
 @implementation MRTMPCHandler
 
 - (void)setupPeerWithDisplayName:(NSString *)displayName {
@@ -20,14 +22,14 @@
 }
 
 - (void)setupBrowser {
-    self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:self.peerID serviceType:@"picsnearme-service"];
+    self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:self.peerID serviceType:kServiceType];
     self.browser.delegate = self;
     [self.browser startBrowsingForPeers];
 }
 
 - (void)advertiseSelf:(BOOL)advertise {
     if (advertise) {
-        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:self.peerID discoveryInfo:nil serviceType:@"picsnearme-service"];
+        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:self.peerID discoveryInfo:nil serviceType:kServiceType];
         self.advertiser.delegate = self;
         [self.advertiser startAdvertisingPeer];
         
@@ -43,6 +45,12 @@
     if (!self.peers) {
         self.peers = [NSMutableSet set];
     }
+
+    NSSet* matching = [self.peers filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"%@ == %@", @"displayName", peerID.displayName]];
+    
+    if (matching.count > 0) {
+        [self.peers minusSet:matching];
+    }
     
     [self.peers addObject:peerID];
 }
@@ -57,6 +65,13 @@
                           error:&error]) {
         NSLog(@"[Error] %@", error);
     }
+}
+
+- (BOOL)alreadyPeers:(MCPeerID*)peerID
+{
+    NSSet* matching = [self.peers filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"%@ == %@", @"displayName", peerID.displayName]];
+    
+    return (matching > 0);
 }
 
 #pragma mark - MCSessionDelegate
@@ -100,8 +115,11 @@
 
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
 {
-    [self addPeerWithID:peerID];
-    [browser invitePeer:peerID toSession:self.session withContext:nil timeout:15];
+    if (![self alreadyPeers:peerID]) {
+        [self addPeerWithID:peerID];
+        [browser invitePeer:peerID toSession:self.session withContext:nil timeout:0];
+    }
+
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
