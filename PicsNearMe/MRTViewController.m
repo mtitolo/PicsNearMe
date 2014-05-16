@@ -11,7 +11,7 @@
 #import <DBCamera/DBCameraViewController.h>
 #import <DBCamera/DBCameraContainerViewController.h>
 #import <Parse/Parse.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+#import <SVProgressHUD.h>
 #import "MRTAppDelegate.h"
 #import "MRTSessionController.h"
 #import "MRTImageCollectionViewCell.h"
@@ -23,6 +23,9 @@
 @property (nonatomic, strong) NSMutableArray* images;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *connectionsLabel;
+
+@property (nonatomic, weak) UIView* statusView;
+@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 
 @end
 
@@ -47,17 +50,18 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
+    [super viewWillAppear:animated];
     [self loadStoredImages];
     [self.collectionView reloadData];
 }
 
-- (IBAction)takePhotoTapped:(id)sender
+- (UIStatusBarStyle)preferredStatusBarStyle
 {
-//    
-//    [self sendImage:@"AAAHAHAHAHAHAH"];
-//    return;
-    
+    return UIStatusBarStyleLightContent;
+}
+
+- (IBAction)takePhotoTapped:(id)sender
+{    
     DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
     DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
     [cameraController setUseCameraSegue:NO];
@@ -98,7 +102,22 @@
 {
     [self.images insertObject:image atIndex:0];
     [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:0 inSection:0]]];
+    
+}
 
+- (void)updateState
+{
+    if (self.images.count == 0) {
+        
+        UIImageView* waitingView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waiting"]];
+        UIView* waitingContainer = [[UIView alloc] initWithFrame:CGRectInset(waitingView.frame, -10, -15)];
+        
+        [waitingContainer addSubview:waitingView];
+        
+        UILabel* waitingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(waitingView.frame), waitingContainer.frame.size.width, 30)];
+        
+        waitingLabel.text = @"No one's around! Check back later";
+    }
 }
 
 #pragma mark - DBCameraViewControllerDelegate
@@ -120,7 +139,7 @@
             DLog(@"Saved photo to URL: %@", imageFile.url);
             [self dismissCamera];
             [self sendImage:imageFile.url];
-//            [self addImage:imageFile.url];
+            [self addImage:imageFile.url];
         }
         else{
             [SVProgressHUD dismiss];
