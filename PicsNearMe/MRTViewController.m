@@ -40,6 +40,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveImages) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cream_pixels"]];
+    
+    [self loadStoredImages];
+    [self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,8 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadStoredImages];
-    [self.collectionView reloadData];
+
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -101,12 +103,15 @@
 - (void)addImage:(NSString*)image
 {
     [self.images insertObject:image atIndex:0];
-    [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:0 inSection:0]]];
+    
+    // TODO: Figure out why insertItemsAtIndex 0,0 crashes =(
+    [self.collectionView reloadData];
     
 }
 
 - (void)updateState
 {
+    // TODO
     if (self.images.count == 0) {
         
         UIImageView* waitingView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waiting"]];
