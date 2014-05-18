@@ -8,6 +8,8 @@ pod 'Parse-iOS-SDK'
 pod 'SVProgressHUD'
 pod 'SDWebImage'
 pod 'JTSImageViewController'
+pod 'DRKonamiCode'
+pod 'ARASCIISwizzle'
 
 end
 

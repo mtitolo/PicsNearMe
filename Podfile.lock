@@ -1,6 +1,10 @@
 PODS:
+  - ARASCIISwizzle (1.1.0)
+  - Bolts (1.1.0)
   - DBCamera (2.0)
-  - Facebook-iOS-SDK (3.13.1)
+  - DRKonamiCode (1.1.0)
+  - Facebook-iOS-SDK (3.14.1):
+    - Bolts
   - JTSImageViewController (1.1.1)
   - Parse-iOS-SDK (1.2.19):
     - Facebook-iOS-SDK (~> 3.7)
@@ -10,7 +14,9 @@ PODS:
   - SVProgressHUD (1.0)
 
 DEPENDENCIES:
+  - ARASCIISwizzle
   - DBCamera (from `https://github.com/danielebogo/DBCamera.git`, tag `2.0`)
+  - DRKonamiCode
   - JTSImageViewController
   - Parse-iOS-SDK
   - SDWebImage
@@ -22,8 +28,11 @@ EXTERNAL SOURCES:
     :tag: 2.0
 
 SPEC CHECKSUMS:
+  ARASCIISwizzle: f797328459fc7299f76042fd243f2dd7a5b7c9d8
+  Bolts: dc620a31cf67c29bce3e3d14a07a12e797a1a154
   DBCamera: 92d3ca3646d27a6784af95dfbc72539e1ea296fc
-  Facebook-iOS-SDK: 47ae9e54684c84f93d75d4e6ab47cd031abdf406
+  DRKonamiCode: 0c4567ed49817df5f1c4a2ebc72c0cf6de74e183
+  Facebook-iOS-SDK: 97e68fb37468bee2d90201fd0c9e4dccce5683d9
   JTSImageViewController: adabb94f1fe52b22cef2b3b0fe803f47d1cea889
   Parse-iOS-SDK: 48e366fb9a8956c4e50d93cfd16243176938fae1
   SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
