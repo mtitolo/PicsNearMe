@@ -134,11 +134,11 @@
 
 - (void)addKonami
 {
-    DRKonamiGestureRecognizer *konami = [[DRKonamiGestureRecognizer alloc] initWithTarget:self action:@selector(_konamiHappened:)];
+    DRKonamiGestureRecognizer *konami = [[DRKonamiGestureRecognizer alloc] initWithTarget:self action:@selector(konamiHappened:)];
     [self.view addGestureRecognizer:konami];
 }
 
-- (void)_konamiHappened:(DRKonamiGestureRecognizer *)recognizer
+- (void)konamiHappened:(DRKonamiGestureRecognizer *)recognizer
 {
     if ( [recognizer konamiState] == DRKonamiGestureStateRecognized ) {
         [self toggle];
