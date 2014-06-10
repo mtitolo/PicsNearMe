@@ -17,6 +17,9 @@
 #import "MRTImageCollectionViewCell.h"
 #import <JTSImageViewController/JTSImageViewController.h>
 #import <SDWebImage/SDImageCache.h>
+#import <ARASCIISwizzle/UIFont+ASCII.h>
+#import <ARASCIISwizzle/UIImageView+ASCII.h>
+#import <DRKonamiCode/DRKonamiGestureRecognizer.h>
 
 @interface MRTViewController () <DBCameraViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -43,6 +46,8 @@
     
     [self loadStoredImages];
     [self.collectionView reloadData];
+    
+    [self addKonami];
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,6 +128,27 @@
         
         waitingLabel.text = @"No one's around! Check back later";
     }
+}
+
+#pragma mark - ASCIIfication!
+
+- (void)addKonami
+{
+    DRKonamiGestureRecognizer *konami = [[DRKonamiGestureRecognizer alloc] initWithTarget:self action:@selector(konamiHappened:)];
+    [self.view addGestureRecognizer:konami];
+}
+
+- (void)konamiHappened:(DRKonamiGestureRecognizer *)recognizer
+{
+    if ( [recognizer konamiState] == DRKonamiGestureStateRecognized ) {
+        [self toggle];
+    }
+}
+
+- (void)toggle
+{
+    UIFont.ascii = ! UIFont.ascii;
+    UIImageView.ascii = ! UIImageView.ascii;
 }
 
 #pragma mark - DBCameraViewControllerDelegate
