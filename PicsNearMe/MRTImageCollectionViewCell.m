@@ -22,12 +22,12 @@
 
 - (void)setImageWithURLString:(NSString *)string
 {
-    [self.imageView setImageWithURL:[NSURL URLWithString:string] placeholderImage:nil options:SDWebImageRetryFailed];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:string] placeholderImage:nil options:SDWebImageRetryFailed];
 }
 
 - (void)prepareForReuse
 {
-    [self.imageView cancelCurrentImageLoad];
+    [self.imageView sd_cancelCurrentImageLoad];
 }
 
 @end

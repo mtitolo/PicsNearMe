@@ -1,32 +1,30 @@
 PODS:
-  - DBCamera (2.0)
-  - Facebook-iOS-SDK (3.13.1)
-  - JTSImageViewController (1.1.1)
-  - Parse-iOS-SDK (1.2.19):
-    - Facebook-iOS-SDK (~> 3.7)
-  - SDWebImage (3.6):
+  - Bolts (1.1.3)
+  - DBCamera (2.3.5):
+    - GPUImage (~> 0.1)
+  - GPUImage (0.1.6)
+  - JTSImageViewController (1.4)
+  - Parse (1.5.0):
+    - Bolts (~> 1.1.3)
+  - SDWebImage (3.7.1):
     - SDWebImage/Core
-  - SDWebImage/Core (3.6)
+  - SDWebImage/Core (3.7.1)
   - SVProgressHUD (1.0)
 
 DEPENDENCIES:
-  - DBCamera (from `https://github.com/danielebogo/DBCamera.git`, tag `2.0`)
-  - JTSImageViewController
-  - Parse-iOS-SDK
-  - SDWebImage
-  - SVProgressHUD
-
-EXTERNAL SOURCES:
-  DBCamera:
-    :git: https://github.com/danielebogo/DBCamera.git
-    :tag: 2.0
+  - DBCamera (~> 2.3)
+  - JTSImageViewController (~> 1.4)
+  - Parse (~> 1.5)
+  - SDWebImage (~> 3.7)
+  - SVProgressHUD (~> 1.0)
 
 SPEC CHECKSUMS:
-  DBCamera: 92d3ca3646d27a6784af95dfbc72539e1ea296fc
-  Facebook-iOS-SDK: 47ae9e54684c84f93d75d4e6ab47cd031abdf406
-  JTSImageViewController: adabb94f1fe52b22cef2b3b0fe803f47d1cea889
-  Parse-iOS-SDK: 48e366fb9a8956c4e50d93cfd16243176938fae1
-  SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
-  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  DBCamera: 0095227e0d2d0292c5a2cc400fe75687120e6f29
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
+  JTSImageViewController: 9fe6402194b7679f0e28d0c1002d6164301fc34a
+  Parse: 7de25b6f70f0b233e5d25835f62eabfa91e4f9d7
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.34.4
