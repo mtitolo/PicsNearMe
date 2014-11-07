@@ -1,13 +1,14 @@
-# Uncomment this line to define a global platform for your project
-platform :ios, "7.0"
+platform :ios, "7.1"
+
+source 'https://github.com/CocoaPods/Specs.git'
 
 target "PicsNearMe" do
 
-pod 'DBCamera', :git => 'https://github.com/danielebogo/DBCamera.git', :tag => '2.0'
-pod 'Parse-iOS-SDK'
-pod 'SVProgressHUD'
-pod 'SDWebImage'
-pod 'JTSImageViewController'
+pod 'DBCamera', '~> 2.3'
+pod 'Parse', '~> 1.5'
+pod 'SVProgressHUD', '~> 1.0'
+pod 'SDWebImage', '~> 3.7'
+pod 'JTSImageViewController', '~> 1.4'
 
 end
 

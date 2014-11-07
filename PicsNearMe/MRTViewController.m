@@ -199,7 +199,7 @@
     JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
                                            initWithImageInfo:imageInfo
                                            mode:JTSImageViewControllerMode_Image
-                                           backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+                                           backgroundStyle:JTSImageViewControllerBackgroundOption_Blurred];
     
     [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOriginalPosition];
     
